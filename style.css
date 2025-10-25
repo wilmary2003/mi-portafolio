@@ -1,0 +1,164 @@
+/* Variables CSS para Coherencia de Colores y Dark Mode */
+:root {
+    --primary-color: #0c0d0e; /* Azul de Bootstrap */
+    --bg-light: #f9f8fa; /* Color de fondo claro (Light Mode) */
+    --text-light: #6e41b6; /* Color de texto oscuro (Light Mode) */
+    --bg-dark: #343a40; /* Color de fondo oscuro (Dark Mode) */
+    --text-dark: #254bc8; /* Color de texto claro (Dark Mode) */
+    --transition-speed: 0.3s;
+}
+
+/* Base Body Styles and Transition */
+body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    scroll-behavior: smooth;
+}
+
+/* Navbar Light Mode */
+.navbar {
+    background-color: var(--bg-light) !important;
+    transition: background-color var(--transition-speed);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--text-light) !important;
+}
+
+/* Modificación del color del icono de GitHub para el modo claro */
+.github-icon i {
+    color: var(--text-light) !important;
+}
+
+/* --- Dark Mode Overrides (Body Class 'dark') --- */
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.dark .navbar {
+    background: var(--bg-dark) !important;
+}
+
+body.dark .navbar-brand,
+body.dark .nav-link {
+    color: var(--text-dark) !important;
+}
+
+/* Override para fondos claros que deben ser oscuros en Dark Mode */
+body.dark .bg-light {
+    background: var(--bg-dark) !important;
+}
+
+/* Override para tarjetas en Dark Mode */
+body.dark .card {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    border-color: var(--primary-color); /* Borde primario para destacar */
+}
+
+/* Asegurar que los íconos sean visibles en Dark Mode */
+body.dark i {
+    color: var(--text-dark);
+}
+
+/* Asegurar que elementos .text-dark cambien a claro en Dark Mode (excepto los que ya tienen color específico) */
+body.dark .text-dark {
+    color: var(--text-dark) !important; /* Usar el color de texto de fondo oscuro */
+}
+
+/* Ajustar color del icono de GitHub a claro en Dark Mode */
+body.dark .github-icon i {
+    color: var(--text-dark) !important;
+}
+
+
+/* --- Homepage Hero Gradient Animation --- */
+.gradient-bg {
+    background: linear-gradient(-45deg, #4917c0, #e73cb4, #834b99, #3406b3);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Project Card Styles --- */
+.project-card {
+    border: 2px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: heartbeat 3s ease-in-out infinite;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation-play-state: paused; /* Pausa el heartbeat al hacer hover */
+}
+
+/* Animación Heartbeat Lenta */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* --- Experience Card Styles --- */
+.experience-card {
+    border: 1px solid var(--primary-color);
+}
+
+
+/* --- Responsive Optimizations (Media Query) --- */
+@media (max-width: 768px) {
+    /* Navbar Toggle */
+    .navbar-collapse {
+        text-align: center;
+    }
+    .nav-item {
+        margin-bottom: 5px;
+    }
+
+    /* Hero Section - Reducir tamaño de fuente en móviles */
+    #homepage h1 {
+        font-size: 2.5rem;
+    }
+    #homepage .lead {
+        font-size: 1.1rem;
+    }
+
+    /* Cards - Apilado vertical */
+    .project-card, .experience-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Accesibilidad: Focus outlines visibles */
+:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Animación de entrada suave para la Home (simulando fadeInUp de Animate.css) */
+/* Se utiliza animate__animated y animate__fadeInUp de una libreria ficticia en la simulación, pero se define un fallback simple */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+}
+/* No es necesario definir todas las animaciones, solo las que se usaron en el HTML. */
